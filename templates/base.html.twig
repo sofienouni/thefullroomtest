@@ -4,14 +4,43 @@
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {# css #}
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+        <header class="p-3 text-bg-dark">
+            <div class="container">
+                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
+                        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+                    </a>
+
+                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                        <li><a href="{{ path('app_home_index') }}" class="nav-link px-2 text-secondary">Listes des congés</a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('app_user_index') }}" class="nav-link px-2 text-secondary">Listes des employés</a></li>
+                        {% endif %}
+                    </ul>
+
+
+                    <div class="text-end">
+                        {% if is_granted('ROLE_USER') %}
+                            <a href="{{ path('app_home_new') }}" type="button" class="btn btn-outline-light me-2">Demande de Congés</a>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </header>
+
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+
         {% endblock %}
 
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
         {% endblock %}
+        <script src="{{ asset('assets/js/script.js') }}" defer></script>
     </head>
     <body>
         {% block body %}{% endblock %}

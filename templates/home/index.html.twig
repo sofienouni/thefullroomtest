@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conges index{% endblock %}
+
+{% block body %}
+
+{#    <a href="{{ path('app_home_new') }}">Create new</a>#}
+
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-8" style="display: flex">
+                            <h2>Liste des <b>Congés</b></h2>
+                        </div>
+                    </div>
+                </div>
+                <table class="table align-middle mb-0 bg-white">
+                    <thead class="bg-secondary">
+                    <tr>
+                        <th></th>
+                        <th>Date De Début</th>
+                        <th>Date De Fin</th>
+                        <th>Status</th>
+                        <th>Commentaire</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for conge in conges %}
+                        <tr>
+                            <td></td>
+                            <td>{{ conge.startDate ? conge.startDate|date('Y-m-d') : '' }}</td>
+                            <td>{{ conge.endDate ? conge.endDate|date('Y-m-d') : '' }}</td>
+                            <td>{{ conge.status.status }}</td>
+                            <td>{{ conge.comment }}</td>
+                            <td>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a href="{{ path('app_home_edit', {'id': conge.id}) }}">edit</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+{#                    {{ pagerfanta(pager) }}#}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

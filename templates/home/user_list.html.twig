@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Conges index{% endblock %}
+
+{% block body %}
+
+    {#    <a href="{{ path('app_home_new') }}">Create new</a>#}
+
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-8" style="display: flex">
+                            <h2>Liste des <b>Employés</b></h2>
+                        </div>
+                    </div>
+                </div>
+                <table class="table align-middle mb-0 bg-white">
+                    <thead class="bg-secondary">
+                    <tr>
+                        <th></th>
+                        <th>Nom</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td></td>
+                            <td>{{ user.username }}</td>
+                            <td>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <a href="{{ path('app_conge_list', {'id': user.id}) }}">Afficher les congés de cet employé</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    {#                    {{ pagerfanta(pager) }}#}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
