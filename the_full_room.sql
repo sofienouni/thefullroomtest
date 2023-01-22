@@ -144,8 +144,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`id`, `username`, `roles`, `password`) VALUES
-(1, 'sofien', '[\"ROLE_ADMIN\"]', '$2y$13$txH1tIMGsKMvGat0Ojcce.P3Y9RxExMZdeDret5ECuAWrcnnzPQxG'),
-(2, 'user1', '[\"ROLE_USER\"]', '$2y$13$ZNKD01jTJoQDfIXgwycJq.iFrhHDWjNOg1lryXCtfOCHDJrTDVjgO');
+(1, 'admin', '[\"ROLE_ADMIN\"]', '$2y$13$OZVea5aWLp88mCA.RlG2re7DiZIXmuiyKPhwM7RVOJFfouNeLvjgS'),
+(2, 'user', '[\"ROLE_USER\"]', '$$2y$13$CueaNBl7sMaPVBS48f9mqeeo5HuIZuhr/KtQiFtydxeok2cPqGQc.');
 
 --
 -- Contraintes pour les tables déchargées
